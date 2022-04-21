@@ -1,35 +1,31 @@
 {
   "schemaVersion": 1,
-  "id": "template_mod",
+  "id": "tweakermore-trady",
   "version": "${version}",
 
-  "name": "template_mod",
-  "description": "",
+  "name": "TweakerMore-Trady",
+  "description": "Trady module of TweakerMore",
   "authors": [
     "Fallen_Breath"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/",
-    "sources": "https://github.com/"
+    "homepage": "https://github.com/Fallen-Breath/tweakermore-trady",
+    "sources": "https://github.com/Fallen-Breath/tweakermore-trady"
   },
 
-  "icon": "assets/template_mod/icon.png",
+  "icon": "assets/tweakermoretrady/icon.png",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
-    "main": [
-      "me.fallenbreath.template_mod.TemplateMod"
+    "mm:early_risers": [
+      "me.fallenbreath.tweakermore.trady.early_risers.TradyEarlyRiser"
     ]
   },
   "mixins": [
-    "template_mod.mixins.json"
+    "tweakermoretrady.mixins.json"
   ],
 
   "depends": {
-    "fabricloader": ">=0.7.1",
-    "minecraft": "1.15.x"
-  },
-  "suggests": {
-    "flamingo": "*"
+    "tweakermore": ">=3.0.0"
   }
 }

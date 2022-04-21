@@ -8,6 +8,12 @@ plugins {
 
 repositories {
 	maven {
+		url 'https://masa.dy.fi/maven'
+	}
+	maven {
+		url 'https://maven.terraformersmc.com/releases'
+	}
+	maven {
 		url 'https://jitpack.io'
 	}
 	maven {
@@ -19,9 +25,6 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 String versionSuffix = ''
-if (System.getenv("BUILD_RELEASE") != "true") {
-	versionSuffix += '-SHAPSHOT'
-}
 String buildNumber = System.getenv("BUILD_ID")
 if (buildNumber != null) {
 	versionSuffix += '+build.' + buildNumber
@@ -39,8 +42,9 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// dependencies
-//	modImplementation fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version)
-//	include fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version)
+	modImplementation 'com.github.Fallen-Breath.tweakermore:tweakermore-mc1.15.2:v3.2.0'
+
+	include(modImplementation("com.github.Chocohead:Fabric-ASM:${project.fabric_asm_version}"))
 }
 
 processResources {
