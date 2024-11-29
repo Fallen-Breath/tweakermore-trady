@@ -9,7 +9,7 @@ import me.fallenbreath.tweakermore.config.options.TweakerMoreConfigBoolean;
 import me.fallenbreath.tweakermore.config.options.TweakerMoreConfigBooleanHotkeyed;
 import me.fallenbreath.tweakermore.config.options.TweakerMoreConfigStringList;
 import me.fallenbreath.tweakermore.config.options.TweakerMoreIConfigBase;
-import me.fallenbreath.tweakermore.util.RegistryUtil;
+import me.fallenbreath.tweakermore.trady.util.RegistryUtils;
 import net.minecraft.item.Items;
 
 import java.lang.reflect.Field;
@@ -35,7 +35,7 @@ public class TradyConfig
 	public static final TweakerMoreConfigBoolean TRADY_THROW_IF_FULL = newConfigBoolean("tradyThrowIfFull", false);
 
 	@Config(type = Config.Type.LIST, category = Config.Category.MC_TWEAKS)
-	public static final TweakerMoreConfigStringList TRADY_FARMER_TARGETS = newConfigStringList("tradyFarmerTargets", ImmutableList.of(RegistryUtil.getItemId(Items.CARROT), RegistryUtil.getItemId(Items.POTATO), RegistryUtil.getItemId(Items.PUMPKIN)));
+	public static final TweakerMoreConfigStringList TRADY_FARMER_TARGETS = newConfigStringList("tradyFarmerTargets", ImmutableList.of(RegistryUtils.getItemId(Items.CARROT), RegistryUtils.getItemId(Items.POTATO), RegistryUtils.getItemId(Items.PUMPKIN)));
 
 	//////// Implementation Details ////////
 
