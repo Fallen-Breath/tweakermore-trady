@@ -11,11 +11,15 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("UnresolvedMixinReference")
 @Mixin(TweakerMoreConfigs.class)
 public abstract class TweakerMoreConfigsMixin
 {
 	@Redirect(
-			method = "<clinit>",
+			method = {
+					"<clinit>",
+					"loadConfigFields",
+			},
 			at = @At(
 					value = "INVOKE",
 					target = "Ljava/lang/Class;getDeclaredFields()[Ljava/lang/reflect/Field;",
