@@ -17,13 +17,13 @@ jobs:
     outputs:
       matrix: ${{ steps.setmatrix.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
 
       - name: 'Display current branch/tag name'
         run: echo ${{ github.ref_name }}
 
       - id: setmatrix
-        uses: JoshuaTheMiller/conditional-build-matrix@0.0.1
+        uses: JoshuaTheMiller/conditional-build-matrix@2.0.1
         with:
           # inputFile: '.github/workflows/matrix_includes.json' # Default input file path
           filter: '[? `${{ github.event_name }}` == `release` || `${{ github.ref_name }}` == branch]'
@@ -39,25 +39,19 @@ jobs:
       matrix: ${{fromJson(needs.matrix_prep.outputs.matrix)}}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
         with:
           ref: ${{ matrix.branch }}
       - name: Set up JDK 17
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: 17
+          java-version: 25
 
-      - name: Cache gradle files
-        uses: actions/cache@v2
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-            ./.gradle/loom-cache
-          key: ${{ runner.os }}-gradle-${{ hashFiles('*.gradle', 'gradle.properties', '**/*.accesswidener') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev' }}
 
       - name: Build with Gradle
         run: |
@@ -67,7 +61,7 @@ jobs:
           BUILD_RELEASE: true
 
       - name: Upload to action artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v6
         with:
           name: '[${{ matrix.branch }}] build-artifacts'
           path: build/libs/
@@ -75,7 +69,7 @@ jobs:
       - name: Get github release information
         if: ${{ github.event_name == 'workflow_dispatch' }}
         id: get_release
-        uses: cardinalby/git-get-release-action@v1.1
+        uses: cardinalby/git-get-release-action@1.2.5
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -95,22 +89,15 @@ jobs:
               exit 1
           fi
 
-      - name: Read Properties mod_version
-        id: mod_version
-        uses: christian-draeger/read-properties@1.0.1
+      - name: Read common properties
+        id: properties_g
+        uses: BrycensRanch/read-properties-action@v1
         with:
-          path: gradle.properties
-          property: mod_version
-
-      - name: Read Properties minecraft_version
-        id: minecraft_version
-        uses: christian-draeger/read-properties@1.0.1
-        with:
-          path: gradle.properties
-          property: minecraft_version
+          file: gradle.properties
+          all: true
 
       - name: Publish Minecraft Mods
-        uses: Kir-Antipov/mc-publish@v2.1
+        uses: Kira-NT/mc-publish@v3.3
         with:
           modrinth-id: _INSERT_MODRITH_MOD_ID_HERE_
           modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
@@ -124,8 +111,8 @@ jobs:
           files-primary: build/libs/!(*-@(dev|sources)).jar
           files-secondary: ''
 
-          name: ${{ format('FabricModTemplate v{0} for mc{1}', steps.mod_version.outputs.value, steps.minecraft_version.outputs.value) }}
-          version: ${{ format('mc{0}-v{1}', steps.minecraft_version.outputs.value, steps.mod_version.outputs.value) }}
+          name: ${{ format('FabricModTemplate v{0} for mc{1}', steps.properties_g.outputs.mod_version, steps.properties_g.outputs.minecraft_version) }}
+          version: ${{ format('mc{0}-v{1}', steps.properties_g.outputs.minecraft_version, steps.properties_g.outputs.mod_version) }}
           version-type: release
           changelog: ${{ format('{0}{1}', github.event.release.body, steps.get_release.outputs.body) }}  # one of them should be an empty string (null)
 

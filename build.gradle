@@ -1,9 +1,6 @@
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT'
+	id 'net.fabricmc.fabric-loom-remap' version '1.15-SNAPSHOT'
 	id 'maven-publish'
-
-	// https://github.com/Juuxel/LoomQuiltflower
-	id 'io.github.juuxel.loom-quiltflower' version '1.6.0'
 }
 
 repositories {
@@ -14,15 +11,15 @@ repositories {
 		url 'https://maven.terraformersmc.com/releases'
 	}
 	maven {
-		url 'https://jitpack.io'
+		url 'https://maven.fallenbreath.me/releases'
+	}
+	maven {
+		url 'https://maven.fallenbreath.me/jitpack'
 	}
 	maven {
 		url 'https://www.cursemaven.com'
 	}
 }
-
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
 
 String versionSuffix = ''
 String buildNumber = System.getenv("BUILD_ID")
@@ -31,7 +28,7 @@ if (buildNumber != null) {
 }
 String fullModVersion = project.mod_version + versionSuffix
 
-archivesBaseName = project.archives_base_name
+base.archivesName = project.archives_base_name
 version = 'mc' + project.minecraft_version + '-v' + fullModVersion
 group = project.maven_group
 
@@ -42,7 +39,8 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// dependencies
-	modImplementation 'com.github.Fallen-Breath.tweakermore:tweakermore-mc1.15.2:v3.2.0'
+	modImplementation 'com.github.sakura-ryoko:malilib:7b3fb1fc60'
+	modImplementation 'me.fallenbreath:tweakermore:3.28.0-mc1.15.2'
 
 	include(modImplementation("com.github.Chocohead:Fabric-ASM:${project.fabric_asm_version}"))
 }
@@ -60,9 +58,13 @@ processResources {
 // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
 tasks.withType(JavaCompile) {
 	options.encoding = "UTF-8"
+	options.compilerArgs << "-Xlint:deprecation" << "-Xlint:unchecked" << '-Xlint:-options'
 }
 
 java {
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
 	// if it is present.
 	// If you remove this line, sources will not be generated.
@@ -71,7 +73,7 @@ java {
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}"}
+		rename { "${it}_${base.archivesName}"}
 	}
 }
 
@@ -80,6 +82,7 @@ publishing {
 	publications {
 		mavenJava(MavenPublication) {
 			from components.java
+			artifactId = base.archivesName.get()
 		}
 	}
 
