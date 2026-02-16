@@ -23,7 +23,7 @@ jobs:
         run: echo ${{ github.ref_name }}
 
       - id: setmatrix
-        uses: JoshuaTheMiller/conditional-build-matrix@2.0.1
+        uses: JoshuaTheMiller/conditional-build-matrix@v2.0.1
         with:
           # inputFile: '.github/workflows/matrix_includes.json' # Default input file path
           filter: '[? `${{ github.event_name }}` == `release` || `${{ github.ref_name }}` == branch]'
@@ -42,7 +42,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           ref: ${{ matrix.branch }}
-      - name: Set up JDK 17
+      - name: Set up JDK 25
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
