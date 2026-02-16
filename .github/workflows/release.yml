@@ -99,17 +99,10 @@ jobs:
       - name: Publish Minecraft Mods
         uses: Kira-NT/mc-publish@v3.3
         with:
-          modrinth-id: _INSERT_MODRITH_MOD_ID_HERE_
-          modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
-
-          curseforge-id: _INSERT_CURSEFORGE_MOD_ID_HERE_
-          curseforge-token: ${{ secrets.CF_API_TOKEN }}
-
           github-tag: ${{ steps.release_info.outputs.tag_name }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-          files-primary: build/libs/!(*-@(dev|sources)).jar
-          files-secondary: ''
+          files: build/libs/!(*-@(dev|sources)).jar
 
           name: ${{ format('FabricModTemplate v{0} for mc{1}', steps.properties_g.outputs.mod_version, steps.properties_g.outputs.minecraft_version) }}
           version: ${{ format('mc{0}-v{1}', steps.properties_g.outputs.minecraft_version, steps.properties_g.outputs.mod_version) }}
@@ -118,7 +111,7 @@ jobs:
 
           loaders: fabric
           game-versions: ${{ matrix.game_versions }}
-          version-resolver: exact
+          game-version-filter: any
 
           retry-attempts: 3
           retry-delay: 10000
