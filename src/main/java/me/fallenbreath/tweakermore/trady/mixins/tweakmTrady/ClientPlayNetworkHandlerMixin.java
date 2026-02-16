@@ -26,12 +26,18 @@ import java.util.stream.Collectors;
 public abstract class ClientPlayNetworkHandlerMixin
 {
 	@Unique
-	private final List<AbstractTradingHelper> tradingHelpers = Lists.newArrayList();
+	private List<AbstractTradingHelper> tradingHelpers;
 
 	@Unique
 	private static final List<Function<MerchantScreen, AbstractTradingHelper>> tradingHelperConstructors = ImmutableList.of(
 			LapisTradingHelper::new, FarmerTradingHelper::new
 	);
+
+	@Inject(method = "<init>", at = @At("TAIL"))
+	private void init(CallbackInfo ci)
+	{
+		this.tradingHelpers = Lists.newArrayList();
+	}
 
 	@Inject(
 			method = "onSetTradeOffers",
