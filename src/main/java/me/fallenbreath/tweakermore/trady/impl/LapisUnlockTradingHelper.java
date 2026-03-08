@@ -84,7 +84,7 @@ public class LapisUnlockTradingHelper extends AbstractTradingHelper
 		}
 		else
 		{
-			InfoUtils.printActionbarMessage("[Trady Lapis] %1$s is useless now" + (reason != null ? ", reason: " + reason : ""), this.merchantScreen.getTitle());
+			InfoUtils.printActionbarMessage("[Trady Lapis Unlock] %1$s is useless now" + (reason != null ? ", reason: " + reason : ""), this.merchantScreen.getTitle());
 			closeContainer();
 		}
 	}

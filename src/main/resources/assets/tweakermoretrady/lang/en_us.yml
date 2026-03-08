@@ -4,8 +4,12 @@ tweakermore:
       .: tweakmTradyBuyLapis
       comment: |-
         1.13 cleric lapis-buy trading helper
-        TODO
+        - If the lapis trade is 1->2 and available, then trade all lapis
+        - If the lapis trade is locked, then trade one of the tweakmTradyBuyLapisUnlockerItems for unlock attempt
       pretty_name: 1.13 cleric lapis-buy trading helper
+    tweakmTradyBuyLapisUnlockerItems:
+      .: tweakmTradyBuyLapisUnlockerItems
+      comment: Unlocker items to be bought if the lapis trade is locked
     tweakmTradyUnlockLapis:
       .: tweakmTradyUnlockLapis
       comment: |-

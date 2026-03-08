@@ -2,10 +2,7 @@ package me.fallenbreath.tweakermore.trady.mixins.tweakmTrady;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import me.fallenbreath.tweakermore.trady.impl.AbstractTradingHelper;
-import me.fallenbreath.tweakermore.trady.impl.FarmerTradingHelper;
-import me.fallenbreath.tweakermore.trady.impl.LapisUnlockTradingHelper;
-import me.fallenbreath.tweakermore.trady.impl.TradyMerchantContainer;
+import me.fallenbreath.tweakermore.trady.impl.*;
 import net.minecraft.client.gui.screen.ingame.MerchantScreen;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.container.Container;
@@ -30,6 +27,7 @@ public abstract class ClientPlayNetworkHandlerMixin
 
 	@Unique
 	private static final List<Function<MerchantScreen, AbstractTradingHelper>> tradingHelperConstructors = ImmutableList.of(
+			LapisBuyTradingHelper::new,
 			LapisUnlockTradingHelper::new,
 			FarmerTradingHelper::new
 	);

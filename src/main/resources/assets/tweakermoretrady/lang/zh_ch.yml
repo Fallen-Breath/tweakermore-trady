@@ -4,8 +4,12 @@ tweakermore:
       .: 青金石购买交易助手
       comment: |-
         1.13牧师青金石购买交易助手
-        TODO
+        - 若青金石交易可用且为一换二，则交易
+        - 若青金石交易被锁定，则购买tweakmTradyBuyLapisUnlockerItems中的物品，尝试解锁
       pretty_name: 1.13牧师青金石购买交易助手
+    tweakmTradyBuyLapisUnlockerItems:
+      .: 青金石购买交易助手-解锁用物品
+      comment: 在青金石交易被锁定时，购买这些物品来尝试解锁青金石
     tweakmTradyUnlockLapis:
       .: 青金石解锁交易助手
       comment: |-

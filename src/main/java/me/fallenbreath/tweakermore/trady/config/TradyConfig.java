@@ -28,6 +28,14 @@ public class TradyConfig
 	@Config(type = Config.Type.TWEAK, category = Config.Category.MC_TWEAKS)
 	public static final TweakerMoreConfigBooleanHotkeyed TWEAKM_TRADY_BUY_LAPIS = newConfigBooleanHotkeyed("tweakmTradyBuyLapis");
 
+	@Config(type = Config.Type.LIST, category = Config.Category.MC_TWEAKS)
+	public static final TweakerMoreConfigStringList TWEAKM_TRADY_BUY_LAPIS_UNLOCKER_ITEMS = newConfigStringList("tweakmTradyBuyLapisUnlockerItems", ImmutableList.of(
+			RegistryUtils.getItemId(Items.EXPERIENCE_BOTTLE),
+			RegistryUtils.getItemId(Items.REDSTONE),
+			RegistryUtils.getItemId(Items.GLOWSTONE),
+			RegistryUtils.getItemId(Items.ENDER_PEARL)
+	));
+
 	@Config(type = Config.Type.TWEAK, category = Config.Category.MC_TWEAKS)
 	public static final TweakerMoreConfigBooleanHotkeyed TWEAKM_TRADY_UNLOCK_LAPIS = newConfigBooleanHotkeyed("tweakmTradyUnlockLapis");
 

@@ -113,6 +113,29 @@ public abstract class AbstractTradingHelper
 		}
 	}
 
+	protected boolean hasEnoughItemsInInventory(ItemStack stack)
+	{
+		int remaining = stack.getCount();
+		if (remaining == 0)
+		{
+			return true;
+		}
+		for (int i = container.slots.size() - 36; i < this.container.slots.size(); i++)
+		{
+			ItemStack invstack = this.container.getSlot(i).getStack();
+			if (invstack == null)
+				continue;
+			if (areItemStacksMergable(stack, invstack))
+			{
+//				System.out.println("[hasEnough] taking "+invstack.getCount()+" items from slot # "+i);
+				remaining -= invstack.getCount();
+			}
+			if (remaining <= 0)
+				return true;
+		}
+		return false;
+	}
+
 	/////////////////////////
 	//  To Be Implemented  //
 	/////////////////////////
@@ -220,29 +243,6 @@ public abstract class AbstractTradingHelper
 		return this.container.getSlot(0).getStack().isEmpty()
 				&& this.container.getSlot(1).getStack().isEmpty()
 				&& this.container.getSlot(2).getStack().isEmpty();
-	}
-
-	private boolean hasEnoughItemsInInventory(ItemStack stack)
-	{
-		int remaining = stack.getCount();
-		if (remaining == 0)
-		{
-			return true;
-		}
-		for (int i = container.slots.size() - 36; i < this.container.slots.size(); i++)
-		{
-			ItemStack invstack = this.container.getSlot(i).getStack();
-			if (invstack == null)
-				continue;
-			if (areItemStacksMergable(stack, invstack))
-			{
-//				System.out.println("[hasEnough] taking "+invstack.getCount()+" items from slot # "+i);
-				remaining -= invstack.getCount();
-			}
-			if (remaining <= 0)
-				return true;
-		}
-		return false;
 	}
 
 	private boolean canReceiveOutput(ItemStack stack)
