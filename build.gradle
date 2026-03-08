@@ -1,5 +1,6 @@
 plugins {
 	id 'net.fabricmc.fabric-loom-remap' version '1.15-SNAPSHOT'
+	id 'me.fallenbreath.yamlang' version '1.5.0'
 	id 'maven-publish'
 }
 
@@ -51,6 +52,11 @@ processResources {
 	filesMatching("fabric.mod.json") {
 		expand "version": fullModVersion
 	}
+}
+
+yamlang {
+	targetSourceSets = [sourceSets.main]
+	inputDir = 'assets/tweakermoretrady/lang'
 }
 
 // ensure that the encoding is set to UTF-8, no matter what the system default is

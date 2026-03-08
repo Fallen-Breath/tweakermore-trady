@@ -1,0 +1,30 @@
+tweakermore:
+  config:
+    tweakmTradyUnlockLapis:
+      .: tweakmTradyUnlockLapis
+      comment: |-
+        1.13 cleric lapis-unlock trading helper
+        1. Trade 1x rotten fresh to unlock lapis
+        2. Trade lapis if lapis trade is 1->2
+        3. Trade 1x redstone dust if lapis trade locks and never trades redstone
+      pretty_name: 1.13 cleric lapis-unlock trading helper
+    tweakmTradyFarmer:
+      .: tweakmTradyFarmer
+      comment: |-
+        1.13 farmer trading helper
+        Trade and sell all crops except wheat and melon
+        Items to trade can be modified in list options tradyFarmerTargets
+      pretty_name: 1.13 farmer trading helper
+    tradyThrowIfFull:
+      .: tradyThrowIfFull
+      comment: Throw the output item out if the inventory is full instead of cancelling the attempt when using trading helper
+    tradyFarmerTargets:
+      .: tradyFarmerTargets
+      comment: Crop items to be sold for emerald with farmer trading helper
+  gui:
+    config_category:
+      trady:
+        .: Trady
+        description: |-
+          Trady Module for 1.13.2 villager trading
+          Based on cross-mc-version logic of viaversion

@@ -1,0 +1,30 @@
+tweakermore:
+  config:
+    tweakmTradyUnlockLapis:
+      .: 青金石解锁交易助手
+      comment: |-
+        1.13牧师青金石解锁交易助手
+        1. 1x腐肉解锁青金石交易
+        2. 当青金石交易为1->2时进行交易
+        3. 当青金石交易上锁且没交易过红石粉时，交易一次红石粉
+      pretty_name: 1.13牧师青金石解锁交易助手
+    tweakmTradyFarmer:
+      .: 农民交易助手
+      comment: |-
+        1.13农民交易助手
+        交易出售所有除了小麦西瓜外的农作物
+        用于交易的物品可以在列表选项tradyFarmerTargets中修改
+      pretty_name: 1.13农民交易助手
+    tradyThrowIfFull:
+      .: 背包满时扔出输出物品
+      comment: 在使用交易助手时，如果背包满了，则将交易得到的输出物品扔出去，而非取消交易尝试
+    tradyFarmerTargets:
+      .: 农民交易目标物品
+      comment: 在农民交易助手中用于换取绿宝石的物品
+  gui:
+    config_category:
+      trady:
+        .: 交易助手
+        description: |-
+          用于1.13.2村民交易的交易助手模块
+          基于viaversion的MC跨版本逻辑
