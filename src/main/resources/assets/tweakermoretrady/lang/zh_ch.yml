@@ -1,5 +1,11 @@
 tweakermore:
   config:
+    tweakmTradyBuyLapis:
+      .: 青金石购买交易助手
+      comment: |-
+        1.13牧师青金石购买交易助手
+        TODO
+      pretty_name: 1.13牧师青金石购买交易助手
     tweakmTradyUnlockLapis:
       .: 青金石解锁交易助手
       comment: |-

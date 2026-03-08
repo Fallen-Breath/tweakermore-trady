@@ -1,5 +1,11 @@
 tweakermore:
   config:
+    tweakmTradyBuyLapis:
+      .: tweakmTradyBuyLapis
+      comment: |-
+        1.13 cleric lapis-buy trading helper
+        TODO
+      pretty_name: 1.13 cleric lapis-buy trading helper
     tweakmTradyUnlockLapis:
       .: tweakmTradyUnlockLapis
       comment: |-

@@ -26,6 +26,9 @@ public class TradyConfig
 	////////////////////
 
 	@Config(type = Config.Type.TWEAK, category = Config.Category.MC_TWEAKS)
+	public static final TweakerMoreConfigBooleanHotkeyed TWEAKM_TRADY_BUY_LAPIS = newConfigBooleanHotkeyed("tweakmTradyBuyLapis");
+
+	@Config(type = Config.Type.TWEAK, category = Config.Category.MC_TWEAKS)
 	public static final TweakerMoreConfigBooleanHotkeyed TWEAKM_TRADY_UNLOCK_LAPIS = newConfigBooleanHotkeyed("tweakmTradyUnlockLapis");
 
 	@Config(type = Config.Type.TWEAK,category = Config.Category.MC_TWEAKS)
