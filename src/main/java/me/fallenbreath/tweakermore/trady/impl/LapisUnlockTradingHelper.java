@@ -8,11 +8,11 @@ import net.minecraft.item.Items;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TraderOfferList;
 
-public class LapisTradingHelper extends AbstractTradingHelper
+public class LapisUnlockTradingHelper extends AbstractTradingHelper
 {
 	private static final ItemStack LAPIS_LAZULI_2x = new ItemStack(Items.LAPIS_LAZULI, 2);
 
-	public LapisTradingHelper(MerchantScreen merchantScreen)
+	public LapisUnlockTradingHelper(MerchantScreen merchantScreen)
 	{
 		super(merchantScreen);
 	}
@@ -20,7 +20,7 @@ public class LapisTradingHelper extends AbstractTradingHelper
 	@Override
 	public boolean isEnabled()
 	{
-		return TradyConfig.TWEAKM_TRADY_LAPIS.getBooleanValue() && this.testProfession("entity.minecraft.villager.cleric");
+		return TradyConfig.TWEAKM_TRADY_UNLOCK_LAPIS.getBooleanValue() && this.testProfession("entity.minecraft.villager.cleric");
 	}
 
 	@Override

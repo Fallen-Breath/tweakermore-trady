@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import me.fallenbreath.tweakermore.trady.impl.AbstractTradingHelper;
 import me.fallenbreath.tweakermore.trady.impl.FarmerTradingHelper;
-import me.fallenbreath.tweakermore.trady.impl.LapisTradingHelper;
+import me.fallenbreath.tweakermore.trady.impl.LapisUnlockTradingHelper;
 import me.fallenbreath.tweakermore.trady.impl.TradyMerchantContainer;
 import net.minecraft.client.gui.screen.ingame.MerchantScreen;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -30,7 +30,8 @@ public abstract class ClientPlayNetworkHandlerMixin
 
 	@Unique
 	private static final List<Function<MerchantScreen, AbstractTradingHelper>> tradingHelperConstructors = ImmutableList.of(
-			LapisTradingHelper::new, FarmerTradingHelper::new
+			LapisUnlockTradingHelper::new,
+			FarmerTradingHelper::new
 	);
 
 	@Inject(method = "<init>", at = @At("TAIL"))
