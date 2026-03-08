@@ -96,7 +96,7 @@ public class LapisBuyTradingHelper extends AbstractTradingHelper
 			int priceToBuyAll = choice.getEmeraldCountToBuyAll();
 			if (hasEnoughItemsInInventory(new ItemStack(Items.EMERALD, priceToBuyAll)))
 			{
-				this.prepareTrade(choice.index, true);
+				this.prepareTrade(choice.index, true, "unlocker");
 				return;
 			}
 		}

@@ -12,6 +12,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TraderOfferList;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Objects;
@@ -79,9 +80,9 @@ public class FarmerTradingHelper extends AbstractTradingHelper
 	}
 
 	@Override
-	protected void prepareTrade(int offerIndex, boolean tradeAll)
+	protected void prepareTrade(int offerIndex, boolean tradeAll, @Nullable String comment)
 	{
-		super.prepareTrade(offerIndex, tradeAll);
+		super.prepareTrade(offerIndex, tradeAll, comment);
 		TradeOffer tradeOffer = this.container.getRecipes().get(offerIndex);
 		this.itemThisTrade = tradeOffer.getAdjustedFirstBuyItem().getItem();
 		if (this.itemThisTrade == Items.EMERALD)  // buying

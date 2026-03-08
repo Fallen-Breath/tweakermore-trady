@@ -17,6 +17,7 @@ import net.minecraft.text.BaseText;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.village.TradeOffer;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -152,6 +153,11 @@ public abstract class AbstractTradingHelper
 
 	protected void prepareTrade(int offerIndex, boolean tradeAll)
 	{
+		this.prepareTrade(offerIndex, tradeAll, null);
+	}
+
+	protected void prepareTrade(int offerIndex, boolean tradeAll, @Nullable String comment)
+	{
 		// select slot
 		((MerchantScreenAccessor)this.merchantScreen).setSelectedIndex(offerIndex);
 		((MerchantScreenAccessor)this.merchantScreen).invokeSyncRecipeIndex();
@@ -159,7 +165,7 @@ public abstract class AbstractTradingHelper
 		// viaversion will make the server send an inventory update packet after the client sends the offer index
 		// so we will do the trade when the inventory packet is received
 		// https://github.com/ViaVersion/ViaVersion/blob/4074352a531cfb0de6fa81e043ee761737748a7a/common/src/main/java/com/viaversion/viaversion/protocols/protocol1_14to1_13_2/packets/InventoryPackets.java#L238
-		this.tradeInfo = new TradeInfo(offerIndex, tradeAll);
+		this.tradeInfo = new TradeInfo(offerIndex, tradeAll, comment);
 //		System.out.println("Choosing offer #" + offerIndex);
 	}
 
@@ -188,7 +194,10 @@ public abstract class AbstractTradingHelper
 		}
 		if (counter > 0)
 		{
-			InfoUtils.printActionbarMessage("Traded [%1$s] for %2$s times", formatOffer(offer), counter);
+			InfoUtils.printActionbarMessage(
+					"Traded [%1$s] for %2$s times%3$s",
+					formatOffer(offer), counter, StringUtils.isEmpty(this.tradeInfo.comment) ? "" : String.format(" (%s)", this.tradeInfo.comment)
+			);
 		}
 		this.tradeInfo = null;
 		if (this.shouldCloseContainerAfterTrade())
