@@ -21,8 +21,7 @@ tweakermore:
     tweakmTradyFarmer:
       .: 农民交易助手
       comment: |-
-        1.13农民交易助手
-        交易出售所有除了小麦西瓜外的农作物
+        1.13农民交易助手，交易出售各种农作物
         用于交易的物品可以在列表选项tweakmTradyFarmerTargets中修改
       pretty_name: 1.13农民交易助手
     tweakmTradyFarmerTargets:

@@ -21,8 +21,7 @@ tweakermore:
     tweakmTradyFarmer:
       .: tweakmTradyFarmer
       comment: |-
-        1.13 farmer trading helper
-        Trade and sell all crops except wheat and melon
+        1.13 farmer trading helper, trading and selling various agricultural products
         Items to trade can be modified in list options tweakmTradyFarmerTargets
       pretty_name: 1.13 farmer trading helper
     tweakmTradyFarmerTargets:
