@@ -53,7 +53,7 @@ public class FarmerTradingHelper extends AbstractTradingHelper
 	@Override
 	public void checkOffer()
 	{
-		List<Item> targetItems = TradyConfig.TRADY_FARMER_TARGETS.getStrings().stream().
+		List<Item> targetItems = TradyConfig.TWEAKM_TRADY_FARMER_TARGETS.getStrings().stream().
 			map(itemId -> Registry.ITEM.getOrEmpty(new Identifier(itemId)).orElse(null)).
 			filter(Objects::nonNull).
 			collect(Collectors.toList());

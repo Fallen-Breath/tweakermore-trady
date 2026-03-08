@@ -42,16 +42,16 @@ public class TradyConfig
 	@Config(type = Config.Type.TWEAK,category = Config.Category.MC_TWEAKS)
 	public static final TweakerMoreConfigBooleanHotkeyed TWEAKM_TRADY_FARMER = newConfigBooleanHotkeyed("tweakmTradyFarmer");
 
-	@Config(type = Config.Type.GENERIC, category = Config.Category.MC_TWEAKS)
-	public static final TweakerMoreConfigBoolean TRADY_THROW_IF_FULL = newConfigBoolean("tradyThrowIfFull", false);
-
 	@Config(type = Config.Type.LIST, category = Config.Category.MC_TWEAKS)
-	public static final TweakerMoreConfigStringList TRADY_FARMER_TARGETS = newConfigStringList("tradyFarmerTargets", ImmutableList.of(
+	public static final TweakerMoreConfigStringList TWEAKM_TRADY_FARMER_TARGETS = newConfigStringList("tweakmTradyFarmerTargets", ImmutableList.of(
 			RegistryUtils.getItemId(Items.CARROT),
 			RegistryUtils.getItemId(Items.POTATO),
 			RegistryUtils.getItemId(Items.PUMPKIN),
 			RegistryUtils.getItemId(Items.MELON)
 	));
+
+	@Config(type = Config.Type.GENERIC, category = Config.Category.MC_TWEAKS)
+	public static final TweakerMoreConfigBoolean TRADY_THROW_IF_FULL = newConfigBoolean("tradyThrowIfFull", false);
 
 	//////// Implementation Details ////////
 
